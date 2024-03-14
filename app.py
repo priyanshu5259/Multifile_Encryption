@@ -212,6 +212,7 @@ def text_index():
             return redirect("/text")  # Redirect back to the text input page if no text is provided
     return render_template("text_index.html")
 
+
 @app.route("/image", methods=["GET", "POST"])
 def image_index():
     if request.method == "POST":
@@ -228,19 +229,22 @@ def image_index():
             file.save(filepath)
             key = request.form.get("key")
             key = int(key) if key else None
+            action = request.form.get("action")
             if not key:
                 flash("Please enter a valid key")
                 return redirect(request.url)
-            encrypted_file = os.path.join(app.config['UPLOAD_FOLDER'], 'encrypted_' + filename)
-            decrypted_file = os.path.join(app.config['UPLOAD_FOLDER'], 'decrypted_' + filename)
-            encrypt_image(filepath, encrypted_file, key)
-            decrypt_image(encrypted_file, decrypted_file, key)
-            return render_template("image_result.html", encrypted_file='encrypted_' + filename, decrypted_file='decrypted_' + filename)
+            if action == "encrypt":
+                encrypted_file = os.path.join(app.config['UPLOAD_FOLDER'], 'encrypted_' + filename)
+                encrypt_image(filepath, encrypted_file, key)
+                return render_template("image_result.html", encrypted_file='encrypted_' + filename)
+            elif action == "decrypt":
+                decrypted_file = os.path.join(app.config['UPLOAD_FOLDER'], 'decrypted_' + filename)
+                decrypt_image(filepath, decrypted_file, key)
+                return render_template("image_result.html", decrypted_file='decrypted_' + filename)
+            else:
+                flash("Invalid action")
+                return redirect(request.url)
     return render_template("image_index.html")
-
-@app.route('/download/<filename>')
-def download(filename):
-    return send_file(os.path.join(app.config['UPLOAD_FOLDER'], filename), as_attachment=True)
 
 # Route for PDF encryption form
 @app.route("/pdf_encrypt", methods=["GET", "POST"])

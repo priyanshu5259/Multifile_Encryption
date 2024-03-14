@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Encryption</title>
+    <title>Image Encryption and Decryption</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Image Encryption</h1>
-    <form action="/image" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" required><br>
-        <label for="key">Encryption Key:</label>
-        <input type="text" name="key" required><br>
-        <button type="submit">Encrypt</button>
-    </form>
+
+<body class="bg-gray-900 text-white">
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="bg-gray-800 shadow-lg rounded-lg p-8 max-w-sm w-full">
+            <h1 class="text-4xl text-center text-red-600 mb-8 font-bold">Image Encryption and Decryption</h1>
+            <form action="/image" method="post" enctype="multipart/form-data">
+                <div class="mb-4">
+                    <label for="file" class="block text-sm font-medium text-gray-300">Choose Image File:</label>
+                    <input type="file" name="file" id="file" class="mt-1 block w-full py-2 px-3 border border-gray-600 bg-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm text-gray-300" required>
+                </div>
+                <div class="mb-4">
+                    <label for="key" class="block text-sm font-medium text-gray-300">Key:</label>
+                    <input type="text" name="key" id="key" class="mt-1 block w-full py-2 px-3 border border-gray-600 bg-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm text-gray-300" required>
+                </div>
+                <div class="mb-4">
+                    <label for="action" class="block text-sm font-medium text-gray-300">Action:</label>
+                    <select name="action" id="action" class="mt-1 block w-full py-2 px-3 border border-gray-600 bg-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm text-gray-300" required>
+                        <option value="encrypt">Encrypt</option>
+                        <option value="decrypt">Decrypt</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Submit</button>
+            </form>
+        </div>
+    </div>
 </body>
+
 </html>

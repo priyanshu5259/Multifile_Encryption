@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Encryption Result</title>
+    <title>Image Result</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Image Encryption Result</h1>
-    <h2>Encrypted Image:</h2>
-    <a href="{{ url_for('download', filename=encrypted_file) }}" download>Download Encrypted Image</a><br>
-    <h2>Decrypted Image:</h2>
-    <a href="{{ url_for('download', filename=decrypted_file) }}" download>Download Decrypted Image</a><br>
+
+<body class="bg-gray-900 text-white">
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="bg-gray-800 shadow-lg rounded-lg p-8 max-w-sm w-full">
+            <h1 class="text-4xl text-center text-red-600 mb-8 font-bold">Image Result</h1>
+            {% if encrypted_file %}
+            <div class="mb-4">
+                <h2 class="text-xl text-gray-300">Encrypted Image:</h2>
+                <a href="{{ url_for('download_pdf', filename=encrypted_file) }}" class="text-blue-500 hover:underline" download>Download Encrypted Image</a><br>
+            </div>
+            {% endif %}
+            {% if decrypted_file %}
+            <div class="mb-4">
+                <h2 class="text-xl text-gray-300">Decrypted Image:</h2>
+                <a href="{{ url_for('download_pdf', filename=decrypted_file) }}" class="text-blue-500 hover:underline" download>Download Decrypted Image</a><br>
+            </div>
+            {% endif %}
+        </div>
+    </div>
 </body>
+
 </html>

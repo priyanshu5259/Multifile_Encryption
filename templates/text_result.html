@@ -1,13 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text Encryption Result</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Text Encryption Result</h1>
-    <p><strong>Encrypted Text:</strong> {{ encrypted_text }}</p>
-    <p><strong>Decrypted Text:</strong> {{ decrypted_text1 }}</p>
+
+<body class="bg-gray-900 text-white">
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="bg-gray-800 shadow-lg rounded-lg p-8 max-w-sm w-full">
+            <h1 class="text-4xl text-center text-red-600 mb-8 font-bold">Text Encryption Result</h1>
+            <div class="bg-gray-700 rounded-md p-4 mb-4 flex items-center justify-between">
+                <p><strong class="text-gray-300">Encrypted Text:</strong> {{ encrypted_text }}</p>
+                <button onclick="copyText('{{ encrypted_text }}')" class="text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-500">
+                    <i class="far fa-copy"></i>
+                </button>
+            </div>
+            <div class="bg-gray-700 rounded-md p-4 flex items-center justify-between">
+                <p><strong class="text-gray-300">Decrypted Text:</strong> {{ decrypted_text1 }}</p>
+                <button onclick="copyText('{{ decrypted_text1 }}')" class="text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-500">
+                    <i class="far fa-copy"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyText(text) {
+            const textarea = document.createElement('textarea');
+            textarea.textContent = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            textarea.remove();
+            alert('Text copied to clipboard!');
+        }
+    </script>
 </body>
+
 </html>
