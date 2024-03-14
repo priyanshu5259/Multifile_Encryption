@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption Result</title>
+</head>
+<body>
+    <h1>Encryption Result</h1>
+    <h2>Encrypted File:</h2>
+    <a href="{{ url_for('download', filename=encrypted_file) }}" download>Download Encrypted File</a><br>
+    <h2>Decrypted File:</h2>
+    <a href="{{ url_for('download', filename=decrypted_file) }}" download>Download Decrypted File</a><br>
+</body>
+</html>

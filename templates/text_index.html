@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Encryption</title>
+</head>
+<body>
+    <h1>Text Encryption</h1>
+    <form action="/text" method="post">
+        <label for="plaintext">Enter Text to Encrypt:</label><br>
+        <textarea id="plaintext" name="plaintext" rows="4" cols="50"></textarea><br>
+        <label for="key1">Key 1:</label>
+        <input type="number" id="key1" name="key1" required><br>
+        <label for="key2">Key 2:</label>
+        <input type="number" id="key2" name="key2" required><br>
+        <label for="key3">Key 3:</label>
+        <input type="number" id="key3" name="key3" required><br>
+        <input type="submit" value="Encrypt">
+    </form>
+</body>
+</html>
